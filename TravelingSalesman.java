@@ -82,7 +82,13 @@ public class TravelingSalesman {
 
 	public static int leastDistancePerPath (int[][] paths) {
 		int distance = (int)Double.POSITIVE_INFINITY;
-
+		for (int i = 0; i<paths.length; i++){
+			int permutationdistance = 0;
+			//code to calculate distance of each permutation
+			if (permutationdistance<distance){
+				distance = permutationdistance;
+			}
+		}
 
 		return distance;
 	}
