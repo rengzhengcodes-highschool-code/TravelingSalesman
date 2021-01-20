@@ -64,6 +64,7 @@ public class TravelingSalesman {
 				path[second_swap] = holder;
 				//assigns the newly generated path
 				paths[permutation] = path.clone();
+				permutation++;
 			}
 		}
 
