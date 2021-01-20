@@ -90,7 +90,7 @@ public class TravelingSalesman {
 		}
 		//runs additional appending to paths
 		for (int run = 1; run < cities; run++) {
-			System.out.println("Run: " + run);
+			//System.out.println("Run: " + run);
 			ArrayList<ArrayList<Integer>> currentCalc = new ArrayList<ArrayList<Integer>>();
 			for (ArrayList<Integer> path : previousCalc) {
 				ArrayList<Integer> citiesRemaining = availableCities(new ArrayList<Integer>(citiesList), path);
