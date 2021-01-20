@@ -58,21 +58,24 @@ public class TravelingSalesman {
 		return distances;
 	}
 
-	public static int[][] pathGeneration (int cities) {
+	public static ArrayList<Integer>[] pathGeneration (int cities) {
 		//generates how many possible paths there are
 		int permutations = 1;
 		for (int counter = cities; counter >= 1; counter--) cities *= permutations;
 		//generates arrays
-		int[][] paths = new int[permutations][cities];
 
-		int permutation = 0; //counts which permutation we are on
-		paths[permutation] = path.clone();
-		permutation++;
+		ArrayList<Integer>[] paths = new ArrayList[permutations];
+		//generates startblock
+		ArrayList<Integer>[] previousCalc = new ArrayList[cities];
+
+		for (int city = 0; city < cities; city++) {
+			
+		}
 
 		for (int amount = 1; amount <= cities; amount++) {
 			int arrSize = 1;
 			for (int counter = cities; counter >= 1; counter--) arrSize *= counter;
-			int[][] amountPaths = new int[arrSize][amount];
+			ArrayList<Integer>[] amountSize = new ArrayList[arrSize];
 
 
 		}
