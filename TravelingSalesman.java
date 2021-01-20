@@ -55,22 +55,15 @@ public class TravelingSalesman {
 		int permutation = 0; //counts which permutation we are on
 		paths[permutation] = path.clone();
 		permutation++;
-		while (permutation < permutations) {//keep on swapping onto all permutations are calculated
-			for (int first_swap = 0; first_swap < cities; first_swap++) {
-				for (int second_swap = cities - 1; second_swap > first_swap; second_swap--) {
-					int holder = path[first_swap]; //holds first value for the swap
-					//the swap
-					path[first_swap] = path[second_swap];
-					path[second_swap] = holder;
-					//assigns the newly generated path
-					paths[permutation] = path.clone();
-					permutation++;
-					if (permutation >= permutations) {
-						return paths;
-					}
-				}
-			}
+
+		for (int amount = 1; amount <= cities; amount++) {
+			int arrSize = 1;
+			for (int counter = cities; counter >= 1; counter--) arrSize *= counter;
+			int[][] amountPaths = new int[arrSize][amount];
+
+			
 		}
+
 		return paths;
 	}
 
