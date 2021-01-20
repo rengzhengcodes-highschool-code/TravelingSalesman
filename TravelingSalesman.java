@@ -3,7 +3,7 @@ import java.io.*;
 
 public class TravelingSalesman {
 	public static void main (String[] args) {
-		System.out.println((int) Double.POSITIVE_INFINITY);
+		System.out.println(Arrays.deepToString(pathGeneration(3)));
 	}
 
 	public static int[][] importFromFile(String file) {
@@ -55,6 +55,17 @@ public class TravelingSalesman {
 		int permutation = 0; //counts which permutation we are on
 		paths[permutation] = path.clone();
 		permutation++;
+
+		for (int first_swap = 0; first_swap < cities; first_swap++) {
+			for (int second_swap = cities - 1; second_swap > first_swap; second_swap--) {
+				int holder = path[first_swap]; //holds first value for the swap
+				//the swap
+				path[first_swap] = path[second_swap];
+				path[second_swap] = holder;
+				//assigns the newly generated path
+				paths[permutation] = path.clone();
+			}
+		}
 
 		return paths;
 	}
