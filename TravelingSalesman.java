@@ -3,7 +3,7 @@ import java.io.*;
 
 public class TravelingSalesman {
 	public static void main (String[] args) {
-		System.out.println(pathGeneration(1));
+		System.out.println(pathGeneration(3));
 	}
 
 	public static int[][] importFromFile(String file) {
@@ -58,8 +58,8 @@ public class TravelingSalesman {
 		return distances;
 	}
 
-	private ArrayList<Integer> availableCities (ArrayList<Integer> citiesList, ArrayList<Integer> path) {
-		for (Integer city : path) {
+	private static ArrayList<Integer> availableCities (ArrayList<Integer> citiesList, ArrayList<Integer> path) {
+		for (int city : path) {
 			citiesList.remove(citiesList.get(city));
 		}
 
@@ -84,14 +84,25 @@ public class TravelingSalesman {
 			//adding list of cities
 			citiesList.add(city);
 		}
-
+		//doesn't run additional runs when not needed
 		if (cities == 1) {
 			return previousCalc;
 		}
-
+		//runs additional appending to paths
 		for (int run = 1; run < cities; run++) {
-			
+			ArrayList<ArrayList<Integer>> currentCalc = new ArrayList<ArrayList<Integer>>();
+			for (ArrayList<Integer> path : previousCalc) {
+				ArrayList<Integer> citiesRemaining = availableCities(new ArrayList<Integer>(citiesList), path);
+				//appends all allowed cities to the path
+				for (int city : citiesRemaining) {
+					ArrayList<Integer> newPath = new ArrayList<Integer>(path);
+					newPath.add(city);
+					currentCalc.add(newPath);
+				}
+			}
+			previousCalc = currentCalc;
 		}
+		paths = previousCalc;
 
 		return paths;
 	}
