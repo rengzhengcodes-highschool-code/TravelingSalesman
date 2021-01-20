@@ -3,11 +3,12 @@ import java.io.*;
 
 public class TravelingSalesman {
 	public static void main (String[] args) {
-		System.out.println(Arrays.deepToString(pathGeneration(3)));
+		System.out.println((int) Double.POSITIVE_INFINITY);
 	}
 
 	public static int[][] importFromFile(String file) {
 		int cities = 0;
+		int[][] distances = new int[0][0];
 		ArrayList<String> citiesList = new ArrayList<String>();
 		//parse each line to cities to cities to value
 		try {
@@ -29,54 +30,47 @@ public class TravelingSalesman {
 				line.close();
 			}
 			in.close();
+			Scanner inn = new Scanner(f);
+
+			// assigning distances
+			distances = new int[cities][cities];
+			int index1 = 0;
+			int index2 = 0;
+			while (inn.hasNextLine()) {
+				Scanner line = new Scanner(inn.nextLine());
+				for (int i = 0; line.hasNext(); i++) {
+					String word = line.next();
+					if (i==0) index1 = citiesList.indexOf(word);
+					if (i==2) index2 = citiesList.indexOf(word);
+					if (i==4) {
+						distances[index1][index2] = Integer.parseInt(word);
+						distances[index2][index1] = Integer.parseInt(word);
+					}
+				}
+			}
+			inn.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			System.out.println(file + "not found");
+			// e.printStackTrace();
+			System.out.println(file + " not found");
 		}
-
-		int[][] distances = new int[cities][cities];
-		//assign distances here1
-
+		// int[][] distances = new int[cities][cities];
+		// System.out.println(citiesList);
 		return distances;
 	}
 
 	public static int[][] pathGeneration (int cities) {
-		//calculates how many possible paths there are
+		//generates how many possible paths there are
 		int permutations = 1;
-		for (int counter = cities; counter >= 1; counter--) permutations *= counter;
-		//Assigns array in memory
+		for (int counter = cities; counter >= 1; counter--) cities *= permutations;
+		//generates arrays
 		int[][] paths = new int[permutations][cities];
-		//generates starting, ordered path
-		int[] path = new int[cities];
-		for (int city = 0; city < cities; city++) {
-			path[city] = city;
-		}
 
-		int permutation = 0; //counts which permutation we are on
-		paths[permutation] = path.clone();
-		permutation++;
-		while (permutation < permutations) {//keep on swapping onto all permutations are calculated
-			for (int first_swap = 0; first_swap < cities; first_swap++) {
-				for (int second_swap = cities - 1; second_swap > first_swap; second_swap--) {
-					int holder = path[first_swap]; //holds first value for the swap
-					//the swap
-					path[first_swap] = path[second_swap];
-					path[second_swap] = holder;
-					//assigns the newly generated path
-					paths[permutation] = path.clone();
-					permutation++;
-					if (permutation >= permutations) {
-						return paths;
-					}
-				}
-			}
-		}
 		return paths;
 	}
 
 	public static int leastDistancePerPath (int[][] paths) {
 		int distance = (int)Double.POSITIVE_INFINITY;
-
+		
 
 		return distance;
 	}
