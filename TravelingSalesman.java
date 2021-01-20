@@ -41,18 +41,27 @@ public class TravelingSalesman {
 	}
 
 	public static int[][] pathGeneration (int cities) {
-		//generates how many possible paths there are
+		//calculates how many possible paths there are
 		int permutations = 1;
-		for (int counter = cities; counter >= 1; counter--) cities *= permutations;
-		//generates arrays
+		for (int counter = cities; counter >= 1; counter--) permutations *= counter;
+		//Assigns array in memory
 		int[][] paths = new int[permutations][cities];
+		//generates starting, ordered path
+		int[] path = new int[cities];
+		for (int city = 0; city < cities; city++) {
+			path[city] = city;
+		}
+
+		int permutation = 0; //counts which permutation we are on
+		paths[permutation] = path.clone();
+		permutation++;
 
 		return paths;
 	}
 
 	public static int leastDistancePerPath (int[][] paths) {
 		int distance = (int)Double.POSITIVE_INFINITY;
-		
+
 
 		return distance;
 	}
