@@ -3,7 +3,7 @@ import java.io.*;
 
 public class TravelingSalesman {
 	public static void main (String[] args) {
-		System.out.println((int) Double.POSITIVE_INFINITY);
+		System.out.println(pathGeneration(1));
 	}
 
 	public static int[][] importFromFile(String file) {
@@ -58,28 +58,29 @@ public class TravelingSalesman {
 		return distances;
 	}
 
-	public static ArrayList<Integer>[] pathGeneration (int cities) {
+	public static ArrayList<ArrayList<Integer>> pathGeneration (int cities) {
 		//generates how many possible paths there are
 		int permutations = 1;
 		for (int counter = cities; counter >= 1; counter--) cities *= permutations;
 		//generates arrays
 
-		ArrayList<Integer>[] paths = new ArrayList[permutations];
+		ArrayList<ArrayList<Integer>> paths = new ArrayList<ArrayList<Integer>>();
 		//generates startblock
-		ArrayList<Integer>[] previousCalc = new ArrayList[cities];
-
+		ArrayList<ArrayList<Integer>> previousCalc = new ArrayList<ArrayList<Integer>>();
 		for (int city = 0; city < cities; city++) {
-			
+			ArrayList<Integer> path = new ArrayList<Integer>();
+			path.add(city);
+			previousCalc.add(path);
 		}
-
-		for (int amount = 1; amount <= cities; amount++) {
+		System.out.print(previousCalc.toString());
+		//adds to generated startblock
+		/*for (int amount = 1; amount <= cities; amount++) {
 			int arrSize = 1;
 			for (int counter = cities; counter >= 1; counter--) arrSize *= counter;
 			ArrayList<Integer>[] amountSize = new ArrayList[arrSize];
 
-
-		}
-
+			for (int insertionVal = 0; )
+		}*/
 		return paths;
 	}
 
