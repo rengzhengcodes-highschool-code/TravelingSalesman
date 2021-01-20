@@ -3,7 +3,7 @@ import java.io.*;
 
 public class TravelingSalesman {
 	public static void main (String[] args) {
-		System.out.println((int) Double.POSITIVE_INFINITY);
+		System.out.println(pathGeneration(3));
 	}
 
 	public static int[][] importFromFile(String file) {
@@ -58,24 +58,51 @@ public class TravelingSalesman {
 		return distances;
 	}
 
-	public static int[][] pathGeneration (int cities) {
+	private static ArrayList<Integer> availableCities (ArrayList<Integer> citiesList, ArrayList<Integer> path) {
+		for (int city : path) {
+			citiesList.remove(citiesList.get(city));
+		}
+
+		return citiesList;
+	}
+
+	public static ArrayList<ArrayList<Integer>> pathGeneration (int cities) {
 		//generates how many possible paths there are
 		int permutations = 1;
 		for (int counter = cities; counter >= 1; counter--) cities *= permutations;
 		//generates arrays
-		int[][] paths = new int[permutations][cities];
 
-		int permutation = 0; //counts which permutation we are on
-		paths[permutation] = path.clone();
-		permutation++;
-
-		for (int amount = 1; amount <= cities; amount++) {
-			int arrSize = 1;
-			for (int counter = cities; counter >= 1; counter--) arrSize *= counter;
-			int[][] amountPaths = new int[arrSize][amount];
-
-
+		ArrayList<ArrayList<Integer>> paths = new ArrayList<ArrayList<Integer>>();
+		//generates startblock and available cities
+		ArrayList<ArrayList<Integer>> previousCalc = new ArrayList<ArrayList<Integer>>();
+		ArrayList<Integer> citiesList = new ArrayList<Integer>();
+		for (int city = 0; city < cities; city++) {
+			//adding paths
+			ArrayList<Integer> path = new ArrayList<Integer>();
+			path.add(city);
+			previousCalc.add(path);
+			//adding list of cities
+			citiesList.add(city);
 		}
+		//doesn't run additional runs when not needed
+		if (cities == 1) {
+			return previousCalc;
+		}
+		//runs additional appending to paths
+		for (int run = 1; run < cities; run++) {
+			ArrayList<ArrayList<Integer>> currentCalc = new ArrayList<ArrayList<Integer>>();
+			for (ArrayList<Integer> path : previousCalc) {
+				ArrayList<Integer> citiesRemaining = availableCities(new ArrayList<Integer>(citiesList), path);
+				//appends all allowed cities to the path
+				for (int city : citiesRemaining) {
+					ArrayList<Integer> newPath = new ArrayList<Integer>(path);
+					newPath.add(city);
+					currentCalc.add(newPath);
+				}
+			}
+			previousCalc = currentCalc;
+		}
+		paths = previousCalc;
 
 		return paths;
 	}
