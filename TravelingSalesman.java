@@ -58,6 +58,14 @@ public class TravelingSalesman {
 		return distances;
 	}
 
+	private ArrayList<Integer> availableCities (ArrayList<Integer> citiesList, ArrayList<Integer> path) {
+		for (Integer city : path) {
+			citiesList.remove(citiesList.get(city));
+		}
+
+		return citiesList;
+	}
+
 	public static ArrayList<ArrayList<Integer>> pathGeneration (int cities) {
 		//generates how many possible paths there are
 		int permutations = 1;
@@ -65,22 +73,26 @@ public class TravelingSalesman {
 		//generates arrays
 
 		ArrayList<ArrayList<Integer>> paths = new ArrayList<ArrayList<Integer>>();
-		//generates startblock
+		//generates startblock and available cities
 		ArrayList<ArrayList<Integer>> previousCalc = new ArrayList<ArrayList<Integer>>();
+		ArrayList<Integer> citiesList = new ArrayList<Integer>();
 		for (int city = 0; city < cities; city++) {
+			//adding paths
 			ArrayList<Integer> path = new ArrayList<Integer>();
 			path.add(city);
 			previousCalc.add(path);
+			//adding list of cities
+			citiesList.add(city);
 		}
-		System.out.print(previousCalc.toString());
-		//adds to generated startblock
-		/*for (int amount = 1; amount <= cities; amount++) {
-			int arrSize = 1;
-			for (int counter = cities; counter >= 1; counter--) arrSize *= counter;
-			ArrayList<Integer>[] amountSize = new ArrayList[arrSize];
 
-			for (int insertionVal = 0; )
-		}*/
+		if (cities == 1) {
+			return previousCalc;
+		}
+
+		for (int run = 1; run < cities; run++) {
+			
+		}
+
 		return paths;
 	}
 
