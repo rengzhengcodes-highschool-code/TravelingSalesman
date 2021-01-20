@@ -3,7 +3,7 @@ import java.io.*;
 
 public class TravelingSalesman {
 	public static void main (String[] args) {
-		System.out.println(Arrays.deepToString(pathGeneration(4)));
+		System.out.println(Arrays.deepToString(pathGeneration(3)));
 	}
 
 	public static int[][] importFromFile(String file) {
