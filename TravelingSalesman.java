@@ -108,7 +108,7 @@ public class TravelingSalesman {
 		return paths;
 	}
 
-	public static int leastDistancePerPath (int[][] paths) {
+	public static int leastDistancePerPath (ArrayList<ArrayList<Integer>> paths, int[][] distances) {
 		int distance = (int)Double.POSITIVE_INFINITY;
 
 
