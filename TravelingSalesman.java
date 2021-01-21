@@ -110,10 +110,10 @@ public class TravelingSalesman {
 
 	public static int leastDistancePerPath (ArrayList<ArrayList<Integer>> paths, int[][] distances) {
 		int distance = (int)Double.POSITIVE_INFINITY;
-		for (int i = 0; i<paths.length; i++){
+		for (int i = 0; i < paths.size(); i++) {
 			int permutationdistance = 0;
 			//code to calculate distance of each permutation
-			if (permutationdistance<distance){
+			if (permutationdistance < distance){
 				distance = permutationdistance;
 			}
 		}
