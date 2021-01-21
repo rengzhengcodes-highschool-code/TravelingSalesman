@@ -3,7 +3,12 @@ import java.io.*;
 
 public class TravelingSalesman {
 	public static void main (String[] args) {
-		System.out.println(pathGeneration(4));
+
+		int[][] dist = importFromFile(args[0]);
+		ArrayList<ArrayList<Integer>> test = pathGeneration(dist[0].length);
+		// System.out.println(test);
+		//System.out.println(pathGeneration(4));
+		System.out.println(leastDistancePerPath(test, dist));
 	}
 
 	public static int[][] importFromFile(String file) {
