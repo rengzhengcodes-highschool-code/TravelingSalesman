@@ -1,27 +1,27 @@
 import java.util.*;
 public class Testing{
 	public static void main (String [] args){
-		System.out.println (TravelingSalesman.pathGeneration(2).length);
-		System.out.println (TravelingSalesman.pathGeneration(3).length);
-		System.out.println (TravelingSalesman.pathGeneration(4).length);
-		System.out.println (TravelingSalesman.pathGeneration(5).length);
-		System.out.println (TravelingSalesman.pathGeneration(6).length);
-		System.out.println (TravelingSalesman.pathGeneration(7).length);
-		System.out.println (TravelingSalesman.pathGeneration(8).length);
-		System.out.println (TravelingSalesman.pathGeneration(9).length);
-		int [][] FourCities = TravelingSalesman.pathGeneration(1);
-		for (int i = 0; i < FourCities.length; i++){
-			System.out.println(Arrays.toString(FourCities[i]));
+		System.out.println (TravelingSalesman.pathGeneration(2).size());
+		System.out.println (TravelingSalesman.pathGeneration(3).size());
+		System.out.println (TravelingSalesman.pathGeneration(4).size());
+		System.out.println (TravelingSalesman.pathGeneration(5).size());
+		System.out.println (TravelingSalesman.pathGeneration(6).size());
+		System.out.println (TravelingSalesman.pathGeneration(7).size());
+		System.out.println (TravelingSalesman.pathGeneration(8).size());
+		System.out.println (TravelingSalesman.pathGeneration(9).size());
+		ArrayList<ArrayList<Integer>> FourCities = TravelingSalesman.pathGeneration(4);
+		for (int i = 0; i < FourCities.size(); i++){
+			System.out.println(FourCities.get(i));
 		}
 
-		//search Array
+		//search ArrayList
 		System.out.println("\n dupes \n");
 		int prints = 0;
-		for (int path = 0; path < FourCities.length; path++) {
-			for (int search_path = 0; search_path < FourCities.length; search_path++) {
-				if (Arrays.toString(FourCities[path]).equals(Arrays.toString(FourCities[search_path])))  {
+		for (int path = 0; path < FourCities.size(); path++) {
+			for (int search_path = 0; search_path < FourCities.size(); search_path++) {
+				if (FourCities.get(path).equals(FourCities.get(search_path)))  {
 					System.out.println("Print: " + prints++ + " Path: " + path + " | Search: " + search_path);
-					System.out.println(Arrays.toString(FourCities[path]));
+					System.out.println(FourCities.get(path));
 				}
 			}
 		}
