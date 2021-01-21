@@ -83,7 +83,7 @@ public class TravelingSalesman {
 			//adding paths
 			ArrayList<Integer> path = new ArrayList<Integer>();
 			path.add(city);
-			previousCalc.add(path);
+			if (city < (cities / 2) + cities % 2) previousCalc.add(path);//If you flip the start and end digits, any permutation in between is the reversal of end and start digit. Since we calculated all permutations in one direction in the first half, calculating it backwards serves no purpose.
 			//adding list of cities
 			citiesList.add(city);
 		}
