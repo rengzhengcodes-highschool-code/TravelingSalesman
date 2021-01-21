@@ -4,7 +4,8 @@ import java.util.Arrays;
 public class TotalTester {
   public static void main (String[] args) {
 
-  System.out.println(pathGeneration(4));
+    System.out.println(leastDistancePerPath(pathGeneration(importFromFile(args[0])[0].length), importFromFile(args[0])));
+    //System.out.println(pathGeneration(4));
 
   }
 
@@ -116,6 +117,24 @@ public class TotalTester {
 		paths = previousCalc;
 
 		return paths;
+	}
+
+  public static int leastDistancePerPath (ArrayList<ArrayList<Integer>> paths, int[][] distances) {
+		int distance = (int)Double.POSITIVE_INFINITY;
+		for (int i = 0; i < paths.size(); i++) {
+			int permutationdistance = 0;
+			//code to calculate distance of each permutation
+			for(int city = 0; city < paths.get(i).size() - 1; city++){
+				int currentCity = paths.get(i).get(city);
+				int nextCity = paths.get(i).get(city + 1);
+				permutationdistance += distances[currentCity][nextCity];
+			}
+			if (permutationdistance < distance){
+				distance = permutationdistance;
+			}
+		}
+
+		return distance;
 	}
 
 }
