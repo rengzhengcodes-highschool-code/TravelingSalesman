@@ -74,12 +74,19 @@ public class TravelingSalesman {
 	public static ArrayList<ArrayList<Integer>> pathGeneration (int cities) {
 		//generates how many possible paths there are
 		int permutations = 1;
-		for (int counter = cities; counter >= 1; counter--) cities *= permutations;
+		for (int counter = cities; counter >= 1; counter--) {
+			permutations = permutations * counter;
+		}
+		//cities *= permutations;
 		//generates arrays
 
+		// paths = all permutations
 		ArrayList<ArrayList<Integer>> paths = new ArrayList<ArrayList<Integer>>();
+
 		//generates startblock and available cities
 		ArrayList<ArrayList<Integer>> previousCalc = new ArrayList<ArrayList<Integer>>();
+
+		// list of possible cities as nums
 		ArrayList<Integer> citiesList = new ArrayList<Integer>();
 		for (int city = 0; city < cities; city++) {
 			//adding paths
