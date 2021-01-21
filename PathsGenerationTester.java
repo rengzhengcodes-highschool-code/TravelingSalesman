@@ -1,5 +1,5 @@
 import java.util.*;
-public class Testing{
+public class PathsGenerationTester {
 	public static void main (String [] args){
 		System.out.println (TravelingSalesman.pathGeneration(2).size());
 		System.out.println (TravelingSalesman.pathGeneration(3).size());
