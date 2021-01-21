@@ -113,6 +113,11 @@ public class TravelingSalesman {
 		for (int i = 0; i < paths.size(); i++) {
 			int permutationdistance = 0;
 			//code to calculate distance of each permutation
+			for(int city = 0; city < paths.get(i).size() - 1; city++){
+				int currentCity = paths.get(i).get(city);
+				int nextCity = paths.get(i).get(city + 1);
+				permutationdistance += distances[currentCity][nextCity];
+			}
 			if (permutationdistance < distance){
 				distance = permutationdistance;
 			}
